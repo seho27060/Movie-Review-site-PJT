@@ -1,5 +1,12 @@
 # Final PJT
-### 팀원
+
+<hr/>
+
+[toc]
+
+<hr/>
+
+## 팀원
 - 팀장 : 이동주
 - 팀원 : 박세호
 
@@ -7,8 +14,8 @@
 | 요일 | 예정                                          |          |      |
 | ---- | --------------------------------------------- | -------- | ---- |
 | 월   | BE 구현                                       | 완료유무 | 비고 |
-|      | 모델 Article, Comment, User, Movie            |          |      |
-|      | 각 모델, serializer 구현                      |          |      |
+|      | 모델 Article, Comment, User, Movie            | O        |      |
+|      | 각 모델, serializer 구현                      | O        |      |
 |      | view, serializer, model, url                  |          |      |
 |      | admin 뷰 구현                                 |          |      |
 | 화   | FE 구현 (Home, Profile, Article, Comment)     |          |      |
@@ -26,6 +33,9 @@
 
 
 
+
+
+
 ## 데이터베이스 및 URL
 ### 데이터베이스
 
@@ -38,7 +48,7 @@
 
 
 
-### URL
+### API_URL(BackEnd, Django)
 
 |         | URL패턴                      | 역할                    |
 | ------- | ---------------------------- | ----------------------- |
@@ -52,20 +62,29 @@
 |         | /articles/<article_pk>/edit/ | aritcle 수정            |
 | Movie   | /movies/                     | 전체 영화 조회          |
 |         | /movies/\<movie_pk>/         | movie detail            |
-|         | /movies/recommandations/     | 영화 추천               |
-|         |                              |                         |
+|         | /movies/recommendations/     | 영화 추천               |
+| Raiting |                              |                         |
 |         |                              |                         |
 | error   | /404/                        | error 페이지 통합       |
 
 
 
+### router_URL(FrontEnd, Vue)
+
+|      |
+| ---- |
+
+
+
 ## 구조 설계
+
 ###  App.vue
 - header 에 navbar 로 각 router 생성(Home, Movie, Article, User) 
 - 로그인 상태에 따라 navbar 구성이 변경
 
 #### Home()
-##### 초기화면
+**초기화면**
+
 - 웹페이지 소개
 - router 이동
 	- Movie 클릭시, 전체 영화조회
@@ -89,3 +108,16 @@
 - Article create 버튼
 	- 클릭시 Article 작성 페이지(/articles/new/ )로 이동
 
+
+
+**작업기록**
+
+- 2022.05.20
+	
+	- 작업시작.
+	
+	1. README(작업 일정, DB설계, API_URL 설계, 구조 설계) 초안 작성
+	1. BE에 필요한 Fixtures 생성(movies, genres)
+	1. BE의 Movie, Raiting, Genre 등의 model 및 serializer 추가
+	
+	- 위 관련 views 작업 예정
