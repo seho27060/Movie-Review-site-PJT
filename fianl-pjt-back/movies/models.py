@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 
 # Create your models here.
 class Genre(models.Model):
@@ -11,3 +13,8 @@ class Movie(models.Model):
     poster_path = models.TextField()
     release_date = models.DateTimeField()
     genre_ids = models.ManyToManyField(Genre, related_name="genre_movies")
+
+class Rating(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='movie_ratings')
+    score = models.FloatField()
