@@ -29,7 +29,7 @@
 ## 데이터베이스 및 URL
 ### 데이터베이스
 
-![](.README.assets/ERD.JPG)
+![](./README.assets/ERD.jpg)
 
 
 
