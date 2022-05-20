@@ -29,7 +29,7 @@
 ## 데이터베이스 및 URL
 ### 데이터베이스
 
-![Untitled Diagram (1)](README.assets/Untitled Diagram (1)-16530212308651.JPG)
+![](README.assets/ERD.JPG)
 
 
 
