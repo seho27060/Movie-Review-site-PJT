@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'articles',
     'accounts',
+    'movies',
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
