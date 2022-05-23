@@ -16,8 +16,8 @@
 | 월   | BE 구현                                       | 완료유무 | 비고 |
 |      | 모델 Article, Comment, User, Movie            | O        |      |
 |      | 각 모델, serializer 구현                      | O        |      |
-|      | view, serializer, model, url                  |          |      |
-|      | admin 뷰 구현                                 |          |      |
+|      | view, serializer, model, url                  | O        |      |
+|      | admin 뷰 구현                                 | O        |      |
 | 화   | FE 구현 (Home, Profile, Article, Comment)     |          |      |
 |      | router URl 설정                               |          |      |
 |      | API 호출 경로 설정                            |          |      |
