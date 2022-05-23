@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Home</h1>
+    <router-link :to="{ name: 'articleNew' }">새글작성</router-link>
     <ul>
       <li v-for="article in articles" :key="article.pk">
         <!-- 작성자 -->
