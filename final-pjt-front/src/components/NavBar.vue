@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <b-navbar class="sticky-top" toggleable="lg" type="dark" variant="dark">
+  <div id="app" class="sticky-top">
+    <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand href="http://localhost:8080/">MovieWorld</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
