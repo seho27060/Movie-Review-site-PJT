@@ -1,12 +1,24 @@
 <template>
-
-  <form @submit.prevent="onSubmit" class="rating-form">
-    <!-- <label for="rating">rating: </label>
-    <input type="float" id="rating" v-model="rating" required> -->
-    <b-form-rating v-model="rating" stars="5"></b-form-rating>
-    <p class="mt-1">Value: {{ rating }}</p>
-    <button>Complete</button>
-  </form>
+  <div>
+    <form @submit.prevent="onSubmit" class="rating-form">
+      <!-- <label for="rating">rating: </label>
+      <input type="float" id="rating" v-model="rating" required> -->
+      <b-form-rating v-model="rating" stars="5"></b-form-rating>
+      <p class="mt-1">Value: {{ rating }}</p>
+      <button>Complete</button>
+    </form>
+    <b-input-group>
+      <b-input-group-prepend>
+        <b-button @click="rating = 0">Clear</b-button>
+      </b-input-group-prepend>
+      <b-form-rating v-model="rating" color="#ff8800"></b-form-rating>
+      <b-input-group-append>
+        <b-input-group-text class="justify-content-center" style="min-width: 3em;">
+          {{ rating }}
+        </b-input-group-text>
+      </b-input-group-append>
+    </b-input-group>
+    </div>
 </template>
 
 <script>

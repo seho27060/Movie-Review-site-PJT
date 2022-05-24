@@ -74,7 +74,7 @@ export default {
           commit('SET_MOVIE_RATINGS', res.data)
         })
         .catch(err => {
-          if (err.response == 503){
+          if (err.response.status == 503){
             alert(err.response.data.message)
           } else{
           console.error(err.response)
