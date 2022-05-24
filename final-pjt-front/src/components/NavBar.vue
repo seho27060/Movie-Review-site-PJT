@@ -16,6 +16,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
+          <b-nav-item v-if=adminCheck :href=adminUrl right>ADMIN</b-nav-item> 
           <b-nav-item :href=profileUrl right>Profile</b-nav-item>
           <b-nav-item href="http://localhost:8080/login" right>Login</b-nav-item>
           <b-nav-item href="http://localhost:8080/logout" right>Logout</b-nav-item>
@@ -38,7 +39,17 @@
       },
       profileUrl () {
         return "http://localhost:8080/profile/" + this.username
-      }
+      },
+      adminUrl() {
+        return "http://127.0.0.1:8000/admin/"
+      },
+      adminCheck(){
+        if (this.currentUser.pk === 1){
+          return true
+        } else{
+          return false
+        }
+      },
     },
   }
 </script>

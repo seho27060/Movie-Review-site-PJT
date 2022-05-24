@@ -82,6 +82,7 @@ const routes = [
     name: 'articleEdit',
     component: ArticleEditView
   },
+  
   {
     path: '/movies',
     name: 'movieList',

@@ -6,6 +6,7 @@ from .models import Movie, Rating, Genre
 from .serializers import MovieListSerializer, MovieSerializer, RatingSerializer
 from movies import serializers
 
+import pprint
 # Create your views here.
 
 @api_view(['GET'])
@@ -24,13 +25,20 @@ def movie_detail(request, movie_pk):
 def create_rating(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     user = request.user
+    ratings = movie.ratings.filter(user=user.pk)
+    if ratings:
+        data = {
+            "message":"이미 평가를 완료한 영화입니다.",
+        }
+        return Response(data = data, status = status.HTTP_503_SERVICE_UNAVAILABLE)
+    else:
+        serializer = RatingSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(movie=movie, user=user)
+            ratings = movie.ratings.all()
 
-    serializer = RatingSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie, user=user)
-        ratings = movie.ratings.all()
-        serializer = RatingSerializer(ratings, many=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+            serializer = RatingSerializer(ratings, many=True)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['PUT', 'DELETE'])
 def rating_update_or_delete(request, movie_pk, rating_pk):

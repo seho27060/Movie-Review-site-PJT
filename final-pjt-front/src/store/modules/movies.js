@@ -62,7 +62,7 @@ export default {
           에러 메시지 표시
       */
       const score = { rating }
-
+      
       axios({
         url: drf.movies.rating(moviePk),
         method: 'post',
@@ -70,9 +70,17 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
+          console.log(res)
           commit('SET_MOVIE_RATINGS', res.data)
         })
-        .catch(err => console.error(err.response))
+        .catch(err => {
+          if (err.response == 503){
+            alert(err.response.data.message)
+          } else{
+          console.error(err.response)
+          }
+        }
+          )
     },
   },
 
