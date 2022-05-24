@@ -10,7 +10,7 @@
           <b-nav-item href="http://localhost:8080/articles">Articles</b-nav-item>
           <b-nav-item-dropdown text="Movies">
             <b-dropdown-item href="http://localhost:8080/movies">영화 리스트</b-dropdown-item>
-            <b-dropdown-item href="http://localhost:8080/movies/recommendation/">영화 추천</b-dropdown-item>
+            <b-dropdown-item href="http://localhost:8080/movies/recommendation">영화 추천</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
 

@@ -4,10 +4,8 @@
     
     <ul>
       <li v-for="movie in movies" :key="movie.pk">
-        <img src="" alt="영화포스터url">
         {{ movie.title }}
       </li>
-
     </ul>
   </div>
 </template>
@@ -23,7 +21,7 @@ export default {
   methods:{
     ...mapActions(['fetchMovies'])
   },
-  create() {
+  created() {
     this.fetchMovies()
   },
 }

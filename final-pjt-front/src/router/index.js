@@ -82,12 +82,12 @@ const routes = [
     component: ArticleEditView
   },
   {
-    path: '/movies/',
+    path: '/movies',
     name: 'movieList',
     component: MovieListView
   },
   {
-    path: '/movies/recommendation/',
+    path: '/movies/recommendation',
     name: 'movieRecommendList',
     component: MovieRecommendListView
   },
