@@ -1,8 +1,11 @@
 <template>
   <div>
       <li>
-          <img :src="poster_path" alt="moviePoster">
-        {{ movie.title }}
+        <router-link
+        :to="{ name:'movieDetail', params: {moviePk: movie.pk}}">
+            <img :src="poster_path" alt="moviePoster">
+            {{ movie.title }}
+        </router-link>
       </li>
   </div>
 </template>

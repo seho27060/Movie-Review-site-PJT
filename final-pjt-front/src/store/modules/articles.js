@@ -29,6 +29,7 @@ export default {
 
   actions: {
     fetchArticles({ commit, getters }) {
+      console.log(drf.movies.movies(),getters.authHeader)
       /* 게시글 목록 받아오기
       GET: articles URL (token)
         성공하면
@@ -46,6 +47,7 @@ export default {
     },
 
     fetchArticle({ commit, getters }, articlePk) {
+      
       /* 단일 게시글 받아오기
       GET: article URL (token)
         성공하면
