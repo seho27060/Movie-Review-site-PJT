@@ -12,6 +12,10 @@ import LoginView from '@/views/LoginView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 import SignupView from '@/views/SignupView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+
+import MovieListView from '@/views/MovieListView.vue'
+import MovieRecommendListView from '@/views/MovieRecommendListView.vue'
+
 import NotFound404 from '../views/NotFound404.vue'
 
 Vue.use(VueRouter)
@@ -76,6 +80,16 @@ const routes = [
     path: '/articles/:articlePk/edit',
     name: 'articleEdit',
     component: ArticleEditView
+  },
+  {
+    path: '/movies/',
+    name: 'movieList',
+    component: MovieListView
+  },
+  {
+    path: '/movies/recommendation/',
+    name: 'movieRecommendList',
+    component: MovieRecommendListView
   },
   {
     path: '/404',
