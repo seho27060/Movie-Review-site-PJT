@@ -32,6 +32,7 @@ def create_rating(request, movie_pk):
         serializer = RatingSerializer(ratings, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+# 
 @api_view(['PUT', 'DELETE'])
 def rating_update_or_delete(request, movie_pk, rating_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)

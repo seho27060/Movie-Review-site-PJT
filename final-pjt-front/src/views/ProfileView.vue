@@ -19,6 +19,11 @@
         </router-link>
       </li>
     </ul>
+    <p>{{ isFollow }}</p>
+    <p>{{ profile.followers }}/{{ profile.followings }}</p>
+    
+    <button v-if="isFollow" @click="followUser(profile.pk,profile.username)">UnFollow</button>
+    <button v-else @click="followUser(profile.pk,profile.username)">Follow</button>
   </div>
 </template>
 
@@ -29,10 +34,10 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'ProfileView',
   computed: {
-    ...mapGetters(['profile'])
+    ...mapGetters(['profile', 'isFollow','currentUser'])
   },
   methods: {
-    ...mapActions(['fetchProfile'])
+    ...mapActions(['fetchProfile','followUser'])
   },
   created() {
     const payload = { username: this.$route.params.username }

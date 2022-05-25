@@ -12,6 +12,7 @@ export default {
     currentUser: {},
     profile: {},
     authError: null,
+    isFollow: false,
   },
   // 모든 state는 getters 를 통해서 접근하겠다.
   getters: {
@@ -19,14 +20,16 @@ export default {
     currentUser: state => state.currentUser,
     profile: state => state.profile,
     authError: state => state.authError,
-    authHeader: state => ({ Authorization: `Token ${state.token}`})
+    authHeader: state => ({ Authorization: `Token ${state.token}`}),
+    isFollow : state => state.isFollow
   },
 
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
-    SET_AUTH_ERROR: (state, error) => state.authError = error
+    SET_AUTH_ERROR: (state, error) => state.authError = error,
+    SET_ISFOLLOW:(state,bool) => state.isFollow = bool
   },
 
   actions: {
@@ -167,7 +170,40 @@ export default {
       })
         .then(res => {
           commit('SET_PROFILE', res.data)
+          for (const el of res.data.followers) {
+            if (el === getters.currentUser.pk){
+              commit('SET_ISFOLLOW',true)
+              console.log('yourfollow')
+              break
+            }
+          }
         })
     },
+
+    followUser({ commit, getters } ,userPk,username) {
+      axios({
+        url: drf.accounts.follow(userPk),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then((res) => {
+          commit('SET_PROFILE', res.data)
+          if(this.isFollow){
+            commit('SET_ISFOLLOW',!this.isFollow)
+            console.log('tur')
+          }else{
+            commit('SET_ISFOLLOW',!this.isFollow)
+            console.log('fase')
+          }
+      })
+        .catch(err => console.error(err.response))
+        router.push({
+          name: 'profile',
+          params: { username: username }
+        })
+      },
+    
   },
+  
+
 }

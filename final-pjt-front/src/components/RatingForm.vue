@@ -4,14 +4,14 @@
       <b-input-group-prepend>
         <b-button @click="rating = 0">Clear</b-button>
       </b-input-group-prepend>
-      <b-form-rating @click="onSubmit" v-model="rating" color="#ff8800"></b-form-rating>
+      <b-form-rating @change="onSubmit" v-model="rating" color="#ff8800"></b-form-rating>
       <b-input-group-append>
         <b-input-group-text class="justify-content-center" style="min-width: 3em;">
           {{ rating }}
         </b-input-group-text>
       </b-input-group-append>
     </b-input-group>
-    <p>{{ movie }}</p>
+    <p>{{ movie.ratings }}</p>
     </div>
 </template>
 
@@ -20,41 +20,33 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'RatingForm',
-  props:{
-    movie:Object
-  },
-  data() {
-    return {
+  data(){
+    return{
       rating: null,
-      value : null,
     }
   },
   computed: {
-    ...mapGetters(['movie']),
-
+    ...mapGetters(['movie','currentUser','ratingPk']),
   },
   methods: {
     ...mapActions(['ratingCreate', 'ratingUpdate', 'ratingDelete']),
     onSubmit () {
-      if (this.rating === null) {
+      console.log('onsiub')
+      if (!this.ratingPk) {
+        console.log('crate')
         this.ratingCreate({ moviePk: this.movie.pk, rating: this.rating})
       } else if (this.rating === 0) {
+        console.log('delete')
         this.ratingDelete()
         this.rating = null
       } else {
+        console.log('update')
         this.ratingUpdate({moviePk: this.movie.pk, ratingPk: this.ratingPk, rating: this.rating})
       }
     },
-    checkRating(){
-      console.log()
-      for (const rating of this.movie.ratings) {
-        if (rating.user.pk === this.currentUser.pk){
-          this.ratingPk = rating.pk
-          break
-        }
-      }
-      console.log(this.ratingPk, typeof(this.ratingPk))
-    },
+
+  },
+  created(){
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div>
     <h1>{{ movie.title }}</h1>
     <p>{{ movie.overview }}</p>
-    <rating-form :movie = "movie"></rating-form>
+    <rating-form></rating-form>
   </div>
 </template>
 

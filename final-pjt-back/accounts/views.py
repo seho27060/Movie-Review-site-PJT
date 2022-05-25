@@ -17,14 +17,11 @@ def profile(request, username):
 def follow(request, user_pk):
     you = get_object_or_404(User, pk=user_pk)
     me = request.user
-
     if me != you:
         if you.followers.filter(pk=me.pk).exists():
             you.followers.remove(me)
         else:
             you.followers.add(me)
-    data = {
-        'follow 함수 처리되었습니다.'
-    }
-    return Response(data)
+    serializer = ProfileSerializer(you)
+    return Response(serializer.data)
     
