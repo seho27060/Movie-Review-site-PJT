@@ -10,14 +10,14 @@
           <b-nav-item href="http://localhost:8080/articles">Articles</b-nav-item>
           <b-nav-item-dropdown text="Movies">
             <b-dropdown-item href="http://localhost:8080/movies">영화 리스트</b-dropdown-item>
-            <b-dropdown-item href="http://localhost:8080/movies/recommendation">영화 추천</b-dropdown-item>
+            <b-dropdown-item href="http://localhost:8080/recommendation">영화 추천</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item v-if=adminCheck :href=adminUrl right>ADMIN</b-nav-item> 
-          <b-nav-item :href=profileUrl right>Profile</b-nav-item>
+          <b-nav-item v-if = "adminCheck" :href="adminUrl" right> ADMIN </b-nav-item> 
+          <b-nav-item :href="profileUrl" right>Profile</b-nav-item>
           <b-nav-item href="http://localhost:8080/login" right>Login</b-nav-item>
           <b-nav-item href="http://localhost:8080/logout" right>Logout</b-nav-item>
           <b-nav-item href="http://localhost:8080/signup" right>Signup</b-nav-item>

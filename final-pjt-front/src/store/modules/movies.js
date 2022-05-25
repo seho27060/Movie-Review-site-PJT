@@ -53,8 +53,7 @@ export default {
           commit('SET_MOVIE', res.data)
           console.log(res.data, getters.rating, getters.ratingPk)
           console.log(res.data.rating)
-          commit('SET_RATING', null)
-          commit('SET_RATINGPK',  null)
+          
           for (const el of res.data.ratings) {
             if (el.user.pk === getters.currentUser.pk){
               console.log(el.rating,el.pk)

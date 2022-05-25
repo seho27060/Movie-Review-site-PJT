@@ -94,7 +94,7 @@ const routes = [
     component: MovieDetailView
   },
   {
-    path: '/movies/recommendation',
+    path: '/recommendation',
     name: 'movieRecommendList',
     component: MovieRecommendListView
   },

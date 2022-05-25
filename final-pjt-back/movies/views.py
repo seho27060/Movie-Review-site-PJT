@@ -58,5 +58,22 @@ def rating_update_or_delete(request, movie_pk, rating_pk):
         return update_rating()
     elif request.method == 'DELETE':
         return delete_rating()
-    
 
+@api_view(["POST"])
+def recommendation(request):
+    print(request.data)
+    if request.data:
+        idx = min(len(request.data),3)
+        genres = request.data[:idx]
+        movies = Movie.objects.filter(genre_ids__in=genres)
+        # if idx >= 1:
+        #     for genre in genres:
+        #         movies = movies.filter(genre_ids__in=[genre])
+        # print(movies.count())
+        # for tit in movies:
+        #     print(tit.title)
+        idx = min(len(movies),10)
+        movies = movies[:idx]
+        serializer = MovieListSerializer(movies,many=True)
+
+        return Response(serializer.data,status=status.HTTP_200_OK)

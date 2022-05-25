@@ -31,5 +31,6 @@ export default {
     movie : moviePk => HOST + MOVIES + `${moviePk}/`,
     rating : moviePk => HOST + MOVIES + `${moviePk}/` + 'rating/',
     ratingModify : (moviePk, ratingPk) => HOST + MOVIES + `${moviePk}/` + 'rating/' + `${ratingPk}/`,
+    recommend : () => HOST + MOVIES + 'recommend/',
   }
 }

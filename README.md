@@ -164,3 +164,13 @@
   3. NavBar의 home, movie 메뉴를 home에 위치하도록 구상.
   
   - Rating Form 마무리, 추천 알고리즘 구상 및 적용, 좋아요/팔로우 기능 구현 예정
+  
+- 2022.05.24
+	- Rating Form 마무리, 추천 알고리즘 구상 및 적용, 완료
+	- HTML/CSS 적용
+		1. home
+		2. article
+		3. movies
+			- movie list
+			- movie recommend
+		4. profile
