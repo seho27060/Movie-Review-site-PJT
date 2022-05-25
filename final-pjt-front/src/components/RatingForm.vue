@@ -1,17 +1,10 @@
 <template>
-  <div>
-    <form @submit.prevent="onSubmit" class="rating-form">
-      <!-- <label for="rating">rating: </label>
-      <input type="float" id="rating" v-model="rating" required> -->
-      <b-form-rating v-model="rating" stars="5"></b-form-rating>
-      <p class="mt-1">Value: {{ rating }}</p>
-      <button>Complete</button>
-    </form>
+  <div class="container">
     <b-input-group>
       <b-input-group-prepend>
         <b-button @click="rating = 0">Clear</b-button>
       </b-input-group-prepend>
-      <b-form-rating v-model="rating" color="#ff8800"></b-form-rating>
+      <b-form-rating @click="onSubmit" v-model="rating" color="#ff8800"></b-form-rating>
       <b-input-group-append>
         <b-input-group-text class="justify-content-center" style="min-width: 3em;">
           {{ rating }}
@@ -37,15 +30,15 @@ export default {
 
   },
   methods: {
-    ...mapActions(['createRating']),
-    onSubmit() {
-      const rating = this.rating
-      if (typeof (rating) === typeof (0.1)) {
-        console.log(this.movie,this.rating)
-        this.createRating({ moviePk: this.movie.pk, rating: this.rating, })
+    ...mapActions(['ratingCreate', 'ratingUpdate', 'ratingDelete']),
+    onSubmit () {
+      if (this.rating === null) {
+        this.ratingCreate({ moviePk: this.movie.pk, rating: this.rating})
+      } else if (this.rating === 0) {
+        this.ratingDelete()
         this.rating = null
-      } else{
-        alert("잘못된 입력입니다.")
+      } else {
+        this.ratingUpdate({moviePk: this.movie.pk, ratingPk: this.ratingPk, rating: this.rating})
       }
     }
   }

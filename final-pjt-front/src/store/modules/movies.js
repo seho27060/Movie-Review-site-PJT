@@ -53,14 +53,8 @@ export default {
         })
     },
 
-    createRating({ commit, getters }, { moviePk, rating }) {
-      /* 댓글 생성
-      POST: comments URL(댓글 입력 정보, token)
-        성공하면
-          응답으로 state.article의 comments 갱신
-        실패하면
-          에러 메시지 표시
-      */
+    ratingCreate({ commit, getters }, { moviePk, rating }) {
+
       const score = { rating }
       
       axios({
@@ -70,18 +64,26 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
-          console.log(res)
           commit('SET_MOVIE_RATINGS', res.data)
         })
-        .catch(err => {
-          if (err.response.status == 503){
-            alert(err.response.data.message)
-          } else{
-          console.error(err.response)
-          }
-        }
-          )
+        .catch(err => console.error(err.response))
     },
+
+    ratingUpdate({ commit, getters }, { moviePk, ratingPk, rating }) {
+
+      const score = { rating }
+
+      axios({
+        url: drf.movies.ratingModify(moviePk, ratingPk),
+        method: 'put',
+        data: score,
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        commit('SET_MOVIE_RATINGS', res.data)
+      })
+      .catch(err => console.log(err.response))
+    }
   },
 
   
