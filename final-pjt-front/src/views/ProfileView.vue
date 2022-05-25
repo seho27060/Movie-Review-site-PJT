@@ -19,6 +19,7 @@
         </router-link>
       </li>
     </ul>
+    <follow-form></follow-form>
   </div>
 </template>
 
@@ -38,6 +39,8 @@ export default {
     ...mapActions(['fetchProfile'])
   },
   created() {
+    this.dispatch('SET_RATING', null)
+    this.dispatch('SET_RATINGPK',  null)
     const payload = { username: this.$route.params.username }
     this.fetchProfile(payload)
   },

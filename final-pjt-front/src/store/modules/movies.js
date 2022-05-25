@@ -51,17 +51,19 @@ export default {
       })
         .then((res)=>{
           commit('SET_MOVIE', res.data)
-          console.log(res.data.ratings)
+          console.log(res.data, getters.rating, getters.ratingPk)
+          console.log(res.data.rating)
+          commit('SET_RATING', null)
+          commit('SET_RATINGPK',  null)
           for (const el of res.data.ratings) {
             if (el.user.pk === getters.currentUser.pk){
               console.log(el.rating,el.pk)
               commit('SET_RATING', el.rating)
               commit('SET_RATINGPK', el.pk)
-              console.log(this.rating, this.ratingPk)
-              break
             }
           }
-        })
+        }
+        )
         .catch(err => {
           console.error(err.response)
           if (err.response.status === 404) {
@@ -80,7 +82,11 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
+          const ratingdata = res.data[0]
+          console.log('create',res,res.data[0].pk)
+          // commit('SET_RATING', res.data.rating)
           commit('SET_MOVIE_RATINGS', res.data)
+          commit('SET_RATINGPK', ratingdata.pk)
         })
         .catch(err => console.error(err.response))
     },
@@ -96,14 +102,30 @@ export default {
         headers: getters.authHeader,
       })
       .then(res => {
-        console.log(res)
-        commit('SET_RATING', res.data.rating)
+        const ratingdata = res.data[0]
+        // console.log("up",res, res.data[0], ratingdata.pk)
+        // commit('SET_RATING', res.data.rating)
         commit('SET_MOVIE_RATINGS', res.data)
+        commit('SET_RATINGPK', ratingdata.pk)
       })
       .catch(err => console.log(err.response))
     },
     
-
+    ratingDelete({ commit, getters }, { moviePk, ratingPk}) {
+      console.log("store delete rating")
+      axios({
+        url: drf.movies.ratingModify(moviePk, ratingPk),
+        method: 'delete',
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        console.log(res)
+        // commit('SET_RATING', res.data.rating)
+        commit('SET_MOVIE_RATINGS', res.data)
+        commit('SET_RATINGPK', null)
+      })
+      .catch(err => console.error(err.response))
+    },
   },
 
   

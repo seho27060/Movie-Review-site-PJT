@@ -9,7 +9,7 @@ columns = ["genre_ids",'overview','poster_path','release_date','title']
 
 output = []
 pk = 0
-for page in range(1,4):
+for page in range(1,11):
     getResponse = requests.request("GET",TMDB_URL, 
     params={
         "api_key":API_KEY,
@@ -23,10 +23,16 @@ for page in range(1,4):
         pk += 1
         addMovie = {
             "pk":pk,
-            "model":"movies.movie"
+            "model":"movies.movie",
+            "fields": []
         }
+        fields = {}
         for col in columns:
-            addMovie[col] = movie[col]
+            if col == 'release_date' and movie[col] == "":
+                fields[col] = "0000-00-00"
+            else:
+                fields[col] = movie[col]
+        addMovie["fields"]=fields
         output.append(addMovie)
 
 pprint(output)

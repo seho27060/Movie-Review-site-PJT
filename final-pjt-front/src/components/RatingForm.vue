@@ -2,9 +2,9 @@
   <div class="container">
     <b-input-group>
       <b-input-group-prepend>
-        <b-button @click="rating = 0">Clear</b-button>
+        <b-button @click="deleteRating">Clear</b-button>
       </b-input-group-prepend>
-      <b-form-rating @change="onSubmit" v-model="rating" color="#ff8800"></b-form-rating>
+      <b-form-rating @change="onSubmit()" v-model="rating" color="#ff8800"></b-form-rating>
       <b-input-group-append>
         <b-input-group-text class="justify-content-center" style="min-width: 3em;">
           {{ rating }}
@@ -20,34 +20,47 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'RatingForm',
-  data(){
-    return{
-      rating: null,
-    }
-  },
   computed: {
-    ...mapGetters(['movie','currentUser','ratingPk']),
+    ...mapGetters(['movie','currentUser']),
+    rating: {
+      get(){
+        return this.$store.getters.rating
+      },
+      set(value){
+        this.$store.commit("SET_RATING",value)
+      }
+    },
+    ratingPk: {
+      get(){
+        return this.$store.getters.ratingPk
+      },
+      set(value){
+        this.$store.commit("SET_RATINGPK",value)
+      }
+    },
   },
   methods: {
     ...mapActions(['ratingCreate', 'ratingUpdate', 'ratingDelete']),
+
+    deleteRating () {
+      console.log("delete",this.movie.pk,this.ratingPk)
+        // this.ratingDelete({moviePk: this.movie.pk, ratingPk: this.ratingPk})
+        this.rating = 0
+        this.ratingDelete({ moviePk: this.movie.pk, ratingPk: this.ratingPk})
+    },
     onSubmit () {
       console.log('onsiub')
-      if (!this.ratingPk) {
-        console.log('crate')
-        this.ratingCreate({ moviePk: this.movie.pk, rating: this.rating})
-      } else if (this.rating === 0) {
-        console.log('delete')
-        this.ratingDelete()
-        this.rating = null
-      } else {
-        console.log('update')
-        this.ratingUpdate({moviePk: this.movie.pk, ratingPk: this.ratingPk, rating: this.rating})
+        if (this.ratingPk === null) 
+        {
+          console.log('crate',this.movie.pk,this.rating, this.ratingPk)
+          this.ratingCreate({ moviePk: this.movie.pk, rating: this.rating})
+        } else
+        {
+          console.log('update',this.movie.pk,this.rating, this.ratingPk)
+          this.ratingUpdate({moviePk: this.movie.pk, ratingPk: this.ratingPk, rating: this.rating})
+        }
       }
-    },
-
   },
-  created(){
-  }
 }
 </script>
 

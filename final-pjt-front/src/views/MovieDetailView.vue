@@ -18,11 +18,10 @@ export default {
   data() {
     return {
       moviePk: this.$route.params.moviePk,
-      ratingPk : null,
     }
   },
   computed: {
-    ...mapGetters(['movie', 'currentUser']),
+    ...mapGetters(['movie', 'currentUser', 'rating']),
   },
   methods: {
     ...mapActions([
