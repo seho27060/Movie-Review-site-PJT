@@ -11,6 +11,7 @@
         </b-input-group-text>
       </b-input-group-append>
     </b-input-group>
+    <p>{{ movie }}</p>
     </div>
 </template>
 
@@ -19,6 +20,9 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'RatingForm',
+  props:{
+    movie:Object
+  },
   data() {
     return {
       rating: null,
@@ -40,7 +44,17 @@ export default {
       } else {
         this.ratingUpdate({moviePk: this.movie.pk, ratingPk: this.ratingPk, rating: this.rating})
       }
-    }
+    },
+    checkRating(){
+      console.log()
+      for (const rating of this.movie.ratings) {
+        if (rating.user.pk === this.currentUser.pk){
+          this.ratingPk = rating.pk
+          break
+        }
+      }
+      console.log(this.ratingPk, typeof(this.ratingPk))
+    },
   }
 }
 </script>

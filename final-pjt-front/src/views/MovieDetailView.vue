@@ -2,7 +2,7 @@
   <div>
     <h1>{{ movie.title }}</h1>
     <p>{{ movie.overview }}</p>
-    <rating-form></rating-form>
+    <rating-form :movie = "movie"></rating-form>
   </div>
 </template>
 
@@ -18,21 +18,20 @@ export default {
   data() {
     return {
       moviePk: this.$route.params.moviePk,
+      ratingPk : null,
     }
   },
   computed: {
-    ...mapGetters(['movie']),
+    ...mapGetters(['movie', 'currentUser']),
   },
   methods: {
-      ...mapActions([
-        'fetchMovie',
-      ])
+    ...mapActions([
+      'fetchMovie',
+    ]),
   },
   created(){
     this.fetchMovie(this.moviePk)
   },
-
-
 }
 </script>
 
