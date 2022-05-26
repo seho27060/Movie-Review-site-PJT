@@ -21,9 +21,11 @@ class RatingSerializer(serializers.ModelSerializer):
 
 class MovieListSerializer(serializers.ModelSerializer):
 
+    ratings = RatingSerializer(many=True, read_only=True)
+    
     class Meta:
         model = Movie
-        fields = ('pk','poster_path', 'title')
+        fields = ('pk','poster_path', 'title', 'ratings')
 
 class MovieSerializer(serializers.ModelSerializer):
 

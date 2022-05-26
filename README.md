@@ -25,11 +25,11 @@
 |      | i) 게시판(Articles) CRUD 구현                 | O        |      |
 |      | ii) 댓글 CRUD 구현                            | O        |      |
 |      |                                               |          |      |
-| 수   | FE 구현 ( Movie)                              |          |      |
-|      | Component, Views, Vuex 구현                   |          |      |
-|      | i) 좋아요(Movie-user), 팔로우(User-User) 구현 |          |      |
-|      | ii) 영화추천 알고리즘 구현(BE에 구현)         |          |      |
-| 목 : | CSS 마무리(Bootstrap)                         |          |      |
+| 수   | FE 구현 ( Movie)                              | O        |      |
+|      | Component, Views, Vuex 구현                   | O        |      |
+|      | i) 좋아요(Movie-user), 팔로우(User-User) 구현 | △        |      |
+|      | ii) 영화추천 알고리즘 구현(BE에 구현)         | O        |      |
+| 목 : | CSS 마무리(Bootstrap)                         | O        |      |
 
 
 
@@ -174,3 +174,16 @@
 			- movie list
 			- movie recommend
 		4. profile
+	
+- 2022.05.25
+
+  - Movie, Community(Article), Rating HTML/CSS 적용
+    - bootstrap-vue 사용
+  - Profile, login, logout HTML/CSS 적용
+    - bootstrap-vue 사용
+  - 동기적 접근하는 부분 최대한 비동기적으로 변환
+  - Movies fixture data 기존 50개에서 200개로 증식
+  - 시연을 위한 Article, Comment, Likes_articles, User 등의 모델에 더미데이터 생성
+  - 기능 구현에 대한 디버깅 진행
+  - 기존에 계획한 기능 구현의 80% 완료
+    -  유저간 팔로잉, Rating 및 Articles 기반 추천 알고리즘 등의 기능 미구현.

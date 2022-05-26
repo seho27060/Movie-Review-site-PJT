@@ -58,7 +58,8 @@ export default {
         return genre["name"]
       })
       return genres
-    }
+    },
+
   },
   methods: {
     ...mapActions([

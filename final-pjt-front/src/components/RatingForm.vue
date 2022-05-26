@@ -11,6 +11,9 @@
         </b-input-group-text>
       </b-input-group-append>
     </b-input-group>
+    <!-- <b-button>{{ ratingScore }}</b-button> -->
+    <!-- {{ movie.ratings}}
+    {{  movie.rating.length}} -->
   </div>
 </template>
 
@@ -37,6 +40,7 @@ export default {
         this.$store.commit("SET_RATINGPK",value)
       }
     },
+
   },
   methods: {
     ...mapActions(['ratingCreate', 'ratingUpdate', 'ratingDelete']),
@@ -58,7 +62,8 @@ export default {
           console.log('update',this.movie.pk,this.rating, this.ratingPk)
           this.ratingUpdate({moviePk: this.movie.pk, ratingPk: this.ratingPk, rating: this.rating})
         }
-      }
+      },
+      
   },
 }
 </script>
