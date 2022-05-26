@@ -1,23 +1,34 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Login</h1>
-
+    <br>
     <account-error-list v-if="authError"></account-error-list>
 
+    <b-form @submit.prevent="login(credentials)">
+      <b-form-group
+        label="ID :"
+        label-for="username"
+      >
+        <b-form-input
+          id="username"
+          v-model="credentials.username"
+          placeholder="Enter your Id"
+          required
+        ></b-form-input>
+      </b-form-group>
 
-    <form @submit.prevent="login(credentials)">
-      <div>
-        <label for="username">username: </label>
-        <input v-model="credentials.username" type="text" id="username" required />
-      </div>
+      <b-form-group label="Password: " label-for="password">
+        <b-form-input
+          id="password"
+          type="password"
+          v-model="credentials.password"
+          placeholder="Enter your Password"
+          required
+        ></b-form-input>
+      </b-form-group>
 
-      <div>
-        <label for="password">password: </label>
-        <input v-model="credentials.password" type="password" id="password" required />
-      </div>
-
-      <button>Login</button>
-    </form>
+      <b-button type="submit" variant="primary">Login</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -47,4 +58,9 @@
   }
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  width: 600px;
+}
+</style>
+

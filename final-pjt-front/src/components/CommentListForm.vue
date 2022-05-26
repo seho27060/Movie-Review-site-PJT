@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="onSubmit" class="comment-list-form">
     <label for="comment">comment: </label>
-    <input type="text" id="comment" v-model="content" required>
-    <button>Comment</button>
+    <input type="text" id="comment" v-model="content" required style="border-radius:3px">
+    <b-button variant="primary" size="sm" class="m-2">Comment</b-button>
   </form>
 </template>
 

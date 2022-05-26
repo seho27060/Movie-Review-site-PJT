@@ -11,8 +11,7 @@
         </b-input-group-text>
       </b-input-group-append>
     </b-input-group>
-    <p>{{ movie.ratings }}</p>
-    </div>
+  </div>
 </template>
 
 <script>

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="container">
     <h1>movieList</h1>
-    
-    <ul>
-      <movie-list-item v-for="movie in movies" :key="movie.pk" :movie="movie">
+    <div class="row">
+      <movie-list-item v-for="movie in movies" :key="movie.pk" :movie="movie"
+      class="col">
       </movie-list-item>
-    </ul>
+    </div>
   </div>
 </template>
 

@@ -28,6 +28,10 @@ export default {
 
 <style>
 .comment-list {
-  border: 1px solid blue;
+  border: 4px solid blue;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
+
 </style>

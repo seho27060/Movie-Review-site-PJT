@@ -1,6 +1,8 @@
 <template>
   <li class="comment-list-item">
-    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
+    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }"
+    class="ml-3"
+    style="color:black">
       {{ comment.user.username }}
     </router-link>: 
     
@@ -8,13 +10,13 @@
 
     <span v-if="isEditing">
       <input type="text" v-model="payload.content">
-      <button @click="onUpdate">Update</button> |
-      <button @click="switchIsEditing">Cancle</button>
+      <b-button variant="success" size="sm" @click="onUpdate">Update</b-button> |
+      <b-button @click="switchIsEditing" size="sm" >Cancle</b-button>
     </span>
 
     <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing">Edit</button> |
-      <button @click="deleteComment(payload)">Delete</button>
+      <b-button class="m-2" variant="primary" size="sm" @click="switchIsEditing">Edit</b-button> |
+      <b-button class="m-2" variant="danger" size="sm" @click="deleteComment(payload)">Delete</b-button>
     </span>
   </li>
 </template>
@@ -54,7 +56,13 @@ export default {
 
 <style>
 .comment-list-item {
-  border: 1px solid green;
-
+  border: 3px solid rgb(66, 179, 66);
+  border-radius: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-block: 4px;
+}
+.b-button{
+  background-color:deepskyblue
 }
 </style>

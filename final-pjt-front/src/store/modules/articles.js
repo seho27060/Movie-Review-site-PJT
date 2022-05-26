@@ -10,6 +10,7 @@ export default {
   state: {
     articles: [],
     article: {},
+    likeCheck: null,
   },
 
   getters: {
@@ -19,6 +20,7 @@ export default {
       return state.article.user?.username === getters.currentUser.username
     },
     isArticle: state => !_.isEmpty(state.article),
+    likeCheck: state => state.likeCheck,
   },
 
   mutations: {
@@ -63,13 +65,14 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_ARTICLE', res.data))
+        .then((res) => commit('SET_ARTICLE', res.data))
         .catch(err => {
           console.error(err.response)
           if (err.response.status === 404) {
             router.push({ name: 'NotFound404' })
           }
         })
+      
     },
 
     createArticle({ commit, getters }, article) {
@@ -229,5 +232,17 @@ export default {
             .catch(err => console.error(err.response))
         }
       },
+    checkLike(data){
+        const likes = data.like_users
+        const me = this.currentUser.pk
+        let check = false
+        for (const user of likes) {
+          if (user == me){
+            this.check = true
+            break
+          }
+        }
+        this.likeCheck = check
+      }
   },
 }
