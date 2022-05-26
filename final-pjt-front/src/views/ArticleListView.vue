@@ -1,11 +1,12 @@
 <template>
   <div class="container justify-content-between"  style="width:80%">
-    <b-container fluid style="height:80%">
+    <b-container fluid>
       <h1>Comunnity</h1>
       <br>
       <router-link :to="{ name: 'articleNew' }">새글작성</router-link>
       <br>     
-      <b-table striped  hover sticky-header  :items='articles' :fields="fields" 
+      <b-table striped hover sticky-header="800px" 
+      :items='articles' :fields="fields" 
       id="my-table"
       responsive
       :per-page="perPage"
@@ -27,7 +28,7 @@
             </router-link>
           </template>
 
-          <template #cell(comment_count)="data">``
+          <template #cell(comment_count)="data">
             <h5><b-badge variant="primary" pill>{{data.item.comment_count}}</b-badge></h5>
           </template>
 
@@ -35,8 +36,7 @@
             <h5><b-badge variant="danger" pill>{{ data.item.like_count }}</b-badge></h5>
           </template>
       </b-table>
-
-
+      
       <b-pagination
         v-model="currentPage"
         :total-rows="rows"
