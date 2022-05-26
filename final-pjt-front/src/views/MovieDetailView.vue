@@ -48,7 +48,7 @@ export default {
   computed: {
     ...mapGetters(['movie', 'currentUser', 'rating']),
     poster_path () {
-            return 'https://image.tmdb.org/t/p/w200/' + this.movie.poster_path
+            return 'https://image.tmdb.org/t/p/original/' + this.movie.poster_path
         },
     releaseDate () {
       return this.movie.release_date.substr(0,10)

@@ -1,11 +1,26 @@
 <template>
-  <div class="container">
-    <h1>movieList</h1>
-    <div class="row">
-      <movie-list-item v-for="movie in movies" :key="movie.pk" :movie="movie"
-      class="col">
+  <div>
+    <h1 class="text-center">movieList</h1><br>
+    <div v-if="!Checked">
+      <b-button variant="primary" @click="isChecked">영화더보기</b-button><br><br>
+    </div>
+    <div v-else>
+      <b-button variant="primary" @click="isChecked">영화 접기</b-button><br><br>
+    </div>
+
+    <div v-if="!Checked" class="row">
+      <movie-list-item v-for="movie in filteredItems" :key="movie.pk" :movie="movie"
+      class="col-2">
       </movie-list-item>
     </div>
+
+    <div v-else class="row">
+      <movie-list-item v-for="movie in movies" :key="movie.pk" :movie="movie"
+      class="col-2">
+      </movie-list-item>
+    </div>
+    
+
   </div>
 </template>
 
@@ -18,14 +33,27 @@ export default {
   components: {
     MovieListItem,
   },
+  data () {
+    return{
+      Checked: false
+      }
+  },
   computed: {
     ...mapGetters(['movies']),
-    poster_path (movie) {
-      return `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+    filteredItems () {
+      return this.movies.slice(0,12)
     }
   },
   methods:{
-    ...mapActions(['fetchMovies'])
+    ...mapActions(['fetchMovies']),
+    isChecked () {
+      if (this.Checked === false) {
+        this.Checked = true
+      }
+      else {
+        this.Checked = false
+      }
+    }
   },
   created() {
     this.fetchMovies()
@@ -34,5 +62,4 @@ export default {
 </script>
 
 <style>
-
 </style>

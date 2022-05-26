@@ -1,25 +1,17 @@
 <template>
   <div>
-    
     <router-link
     :to="{ name:'movieDetail', params: {moviePk: movie.pk}}">
     <b-card
-        :title="movie.title"
-        img-src="https://picsum.photos/600/300/?image=25"
+        :img-src="poster_path"
         img-alt="Image"
         img-top
-        tag="article"
         style="max-width: 20rem;"
-        class="mb-2"
+        class="text-center"
+        img-height="350"
     >
-        <b-card-text>
-        Some quick example text to build on the card title and make up the bulk of the card's content.
-        </b-card-text>
-
-        <b-button href="#" variant="primary">Go somewhere</b-button>
+    <b-card-text style="color: black;"><strong>{{ movie.title }}</strong></b-card-text>
     </b-card>
-        <img class="" :src="poster_path" alt="moviePoster">
-        <p class="text-center">{{ movie.title }}</p>
     </router-link>
   </div>
 </template>
@@ -32,12 +24,11 @@ export default {
     },
     computed: {
         poster_path () {
-            return 'https://image.tmdb.org/t/p/w200/' + this.movie.poster_path
+            return 'https://image.tmdb.org/t/p/original/' + this.movie.poster_path
         }
     }
 }
 </script>
 
 <style>
-
 </style>
