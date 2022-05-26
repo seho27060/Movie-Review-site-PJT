@@ -1,29 +1,31 @@
 <template>
   <div class="container">
     <div>
-      <b-img id="mainImg" src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
+      <b-img id="mainImg" :src="require(`@/assets/movie_home_main.jpg`)" fluid alt="Responsive image"></b-img>
     </div>
     <br>
     <b-card-group deck>
-      <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-        <b-card-text>
-          This is a wider card with supporting text below as a natural lead-in to additional content.
-          This content is a little bit longer.
-        </b-card-text>
-      </b-card>
-
-      <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-        <b-card-text>
-          This card has supporting text below as a natural lead-in to additional content.
-        </b-card-text>
-      </b-card>
-
-      <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-        <b-card-text>
-          This is a wider card with supporting text below as a natural lead-in to additional content.
-          This card has even longer content than the first to show that equal height action.
-        </b-card-text>
-      </b-card>
+      <a href="http://localhost:8080/articles">
+        <b-card title="Community" img-src="@/assets/community.png" img-alt="Image" img-top>
+          <b-card-text>
+            사용자들과 영화에 대한 이야기를 나눠보세요.
+          </b-card-text>
+        </b-card>
+      </a>
+      <a href="http://localhost:8080/movies">
+        <b-card title="Rating" img-src="@/src/assets/rating.png" img-alt="Image" img-top>
+          <b-card-text>
+            좋아하는 영화에 평점을 남겨보세요.
+          </b-card-text>
+        </b-card>
+      </a>
+      <a href="http://localhost:8080/recommendation">
+        <b-card title="Recommend" img-src="@/scr/assets/recommend.png" img-alt="Image" img-top>
+          <b-card-text>
+            좋아하는 장르의 영화 추천을 받아보세요
+          </b-card-text>
+        </b-card>
+      </a>
     </b-card-group>
   </div>
 </template>

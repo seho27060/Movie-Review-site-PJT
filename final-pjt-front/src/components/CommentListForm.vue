@@ -31,8 +31,9 @@ export default {
 
 <style>
 .comment-list-form {
-  border: 1px solid black;
+  border: 1px  solid black;
   margin: 1rem;
   padding: 1rem;
+  border-radius: 5px;
 }
 </style>
