@@ -15,8 +15,10 @@
     <b-button @click="recommend" variant="primary">영화추천 받기</b-button>
 
     <hr>
-    <movie-list-item v-for="movie in movies" :key="movie.pk" :movie="movie">
-    </movie-list-item>
+    <div class="row">
+      <movie-list-item v-for="movie in movies" :key="movie.pk" :movie="movie" class="col-3">
+      </movie-list-item>
+    </div>
   </div>
 </template>
 

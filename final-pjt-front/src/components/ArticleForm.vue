@@ -1,5 +1,29 @@
 <template>
-  <form @submit.prevent="onSubmit">
+      <b-form @submit.prevent="onSubmit">
+      <b-form-group
+        label="제목 :"
+        label-for="title"
+      >
+        <b-form-input
+          id="title"
+          v-model="newArticle.title"
+          placeholder="제목을 입력해주세요"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group label="내용: " label-for="content">
+        <b-form-input
+          id="content"
+          v-model="newArticle.content"
+          placeholder="내용을 입력해주세요"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-button type="submit" variant="primary">{{ action }}</b-button>
+    </b-form>
+  <!-- <form @submit.prevent="onSubmit">
     <div>
       <label for="title">title: </label>
       <input v-model="newArticle.title" type="text" id="title" />
@@ -11,7 +35,7 @@
     <div>
       <button>{{ action }}</button>
     </div>
-  </form>
+  </form> -->
 </template>
 
 <script>

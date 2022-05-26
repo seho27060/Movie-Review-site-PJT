@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Edit Article</h1>
     <article-form v-if="isArticle" :article="article" action="update">
 
