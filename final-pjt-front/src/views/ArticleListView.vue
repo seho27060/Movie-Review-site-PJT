@@ -1,12 +1,13 @@
 <template>
   <div class="container justify-content-between"  style="width:80%">
-    <b-container fluid class="sticky">
+    <b-container fluid style="height:80%">
       <h1>Comunnity</h1>
       <br>
       <router-link :to="{ name: 'articleNew' }">새글작성</router-link>
       <br>     
       <b-table striped  hover sticky-header  :items='articles' :fields="fields" 
       id="my-table"
+      responsive
       :per-page="perPage"
       :current-page="currentPage">
           <template #cell(pk)="data">
