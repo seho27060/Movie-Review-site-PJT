@@ -1,37 +1,37 @@
 <template>
-  <div>
-    <h1>{{ profile.username }}</h1>
+  <div class="container">
+    <b-list-group>
+      <b-list-group-item class="text-center"><h1>{{ profile.username }}의 프로필</h1></b-list-group-item>
 
-    <h2>작성한 글</h2>
-    <ul>
-      <li v-for="article in profile.articles" :key="article.pk">
-        <router-link :to="{ name: 'article', params: { articlePk: article.pk } }">
-          {{ article.title }}
-        </router-link>
-      </li>
-    </ul>
+      <b-list-group-item><h3>작성한 글</h3>
+        <ul>
+          <li v-for="article in profile.articles" :key="article.pk">
+            <router-link :to="{ name: 'article', params: { articlePk: article.pk } }">
+              {{ article.title }}
+            </router-link>
+          </li>
+        </ul>
+      </b-list-group-item>
 
-    <h2>좋아요 한 글</h2>
-    <ul>
-      <li v-for="article in profile.like_articles" :key="article.pk">
-        <router-link :to="{ name: 'article', params: { articlePk: article.pk } }">
-          {{ article.title }}
-        </router-link>
-      </li>
-    </ul>
-    <follow-form></follow-form>
+      <b-list-group-item><h3>좋아요한 글</h3>
+        <ul>
+          <li v-for="article in profile.articles" :key="article.pk">
+            <router-link :to="{ name: 'article', params: { articlePk: article.pk } }">
+              {{ article.title }}
+            </router-link>
+          </li>
+        </ul>
+      </b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import FollowForm from '@/components/FollowForm.vue'
+
 
 export default {
   name: 'ProfileView',
-  components:{
-    FollowForm,
-  },
   computed: {
     ...mapGetters(['profile'])
   },
@@ -39,10 +39,14 @@ export default {
     ...mapActions(['fetchProfile'])
   },
   created() {
-    this.dispatch('SET_RATING', null)
-    this.dispatch('SET_RATINGPK',  null)
     const payload = { username: this.$route.params.username }
     this.fetchProfile(payload)
   },
 }
 </script>
+
+<style scoped>
+.container {
+  width: 800px;
+}
+</style>

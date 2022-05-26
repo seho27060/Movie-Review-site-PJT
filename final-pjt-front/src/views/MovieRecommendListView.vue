@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <b-form-group label="Using options array:" v-slot="{ ariaDescribedby }">
+  <div class="container">
+    <h4>좋아하는 장르를 골라주세요</h4>
+    <b-form-group v-slot="{ ariaDescribedby }">
+      <br>
       <b-form-checkbox-group
         id="checkbox-group-1"
         v-model="selected"
@@ -9,8 +11,9 @@
         name="flavour-1"
       ></b-form-checkbox-group>
     </b-form-group>
-    <div>Selected: <strong>{{ selected }}</strong></div>
-    <button @click="recommend">추천영화보기</button>
+    <br>
+    <b-button @click="recommend" variant="primary">영화추천 받기</b-button>
+
     <hr>
     <movie-list-item v-for="movie in movies" :key="movie.pk" :movie="movie">
     </movie-list-item>
