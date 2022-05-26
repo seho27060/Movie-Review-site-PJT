@@ -23,7 +23,7 @@
           <b-nav-item-dropdown text="Movies">
             <b-dropdown-item>
               <router-link 
-              :to="{ name: 'movieList', params: {} }"
+              :to="{ name: 'movieRecommendList', params: {} }"
               style="color: #212529;">
               영화 리스트
               </router-link>

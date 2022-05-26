@@ -27,7 +27,7 @@
             </router-link>
           </template>
 
-          <template #cell(comment_count)="data">
+          <template #cell(comment_count)="data">``
             <h5><b-badge variant="primary" pill>{{data.item.comment_count}}</b-badge></h5>
           </template>
 
