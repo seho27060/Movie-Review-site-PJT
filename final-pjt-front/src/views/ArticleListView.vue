@@ -1,7 +1,7 @@
 <template>
   <div class="container justify-content-between"  style="width:80%">
     <b-container fluid class="sticky">
-      <h1>Home</h1>
+      <h1>Comunnity</h1>
       <br>
       <router-link :to="{ name: 'articleNew' }">새글작성</router-link>
       <br>     
@@ -19,7 +19,7 @@
 
           <template #cell(title)="data">
             <!-- <a :href="articleUrl(item.index)"></a>/ -->
-            <router-link 
+              <router-link 
               :to="{ name: 'article', params: {articlePk: data.item.pk} }"
               style="color:black">
               {{ data.item.title }}
@@ -35,7 +35,7 @@
           </template>
       </b-table>
 
-      <p class="mt-3">Current Page: {{ currentPage }}</p>
+
       <b-pagination
         v-model="currentPage"
         :total-rows="rows"
@@ -54,7 +54,7 @@
     name: 'ArticleList',
     data(){
       return{
-        perPage: 3,
+        perPage: 10,
         currentPage: 1,
         fields:[
           { key: "user.username", label: "작성자"},
