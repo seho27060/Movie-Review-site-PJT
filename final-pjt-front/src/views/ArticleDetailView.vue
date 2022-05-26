@@ -6,33 +6,25 @@
           class="ml-3"
           style="color:black">
           <div style="float:left"><b-icon icon="person-fill" font-scale="2"></b-icon></div>
-          <div style="float:left"><b-card-sub-title :sub-title="username" sub-title-tag="h3"></b-card-sub-title></div>
+          <div style="float:left"><b-card-sub-title :sub-title="article.user.username" sub-title-tag="h3"></b-card-sub-title></div>
         </router-link>
-
-
       <hr>
+        <br>
         <b-card-text>
           {{ article.content }}
         </b-card-text>
-        
+        <br>
+      <hr>
       <div v-if="isAuthor">
         <router-link :to="{ name: 'articleEdit', params: { articlePk } }">
-          <b-button>Edit</b-button>
+          <b-button variant="primary">Edit</b-button>
         </router-link>
-        |
-        <b-button @click="deleteArticle(articlePk)">Delete</b-button>
+        <b-button @click="deleteArticle(articlePk)" variant="danger" class="ml-3">Delete</b-button>
       </div>
       </b-card>
     </div>
-      <!-- Article Like UI -->
+
       <div>
-        <!-- unlikepart -->
-        <!-- <div> 
-          <b-button class="ml-2"
-            @click="likeArticle(articlePk)" variant="outline-primary">
-            <b-icon icon="hand-thumbs-up"></b-icon> Like it
-          </b-button>
-        </div> -->
         <b-button class="ml-2"
           @click="likeArticle(articlePk)" variant="outline-primary">
           <b-icon icon="hand-thumbs-up"></b-icon> Like it
@@ -73,19 +65,8 @@
       title(){
         return this.article.title
       },
-      username() {
-        return this.article.user.username
-      },
       userProfileUrl(){
-        return `http://localhost:8080/profile/${this.username}`
-      },
-      likeCheck:{
-        get(){
-          return this.$store.getters.likeCheck
-        },
-        set(value){
-          return value
-        }
+        return `http://localhost:8080/profile/${this.article.username}`
       },
     },
     methods: {
@@ -94,22 +75,9 @@
         'likeArticle',
         'deleteArticle',
       ]),
-      checkLike(data){
-        const likes = data.like_users
-        const me = this.currentUser.pk
-        let check = false
-        for (const user of likes) {
-          if (user == me){
-            this.check = true
-            break
-          }
-        }
-        this.likeCheck = check
-      }
     },
     created() {
       this.fetchArticle(this.articlePk)
-      this.checkLike(this.article)
     },
   }
 </script>

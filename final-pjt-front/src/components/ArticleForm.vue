@@ -13,15 +13,17 @@
       </b-form-group>
 
       <b-form-group label="내용: " label-for="content">
-        <b-form-input
+        <b-form-textarea
           id="content"
           v-model="newArticle.content"
           placeholder="내용을 입력해주세요"
           required
-        ></b-form-input>
+          rows="10"
+          max-rows="10"
+        ></b-form-textarea>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">{{ action }}</b-button>
+      <b-button type="submit" variant="success">{{ action }}</b-button>
     </b-form>
   <!-- <form @submit.prevent="onSubmit">
     <div>

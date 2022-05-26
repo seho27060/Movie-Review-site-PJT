@@ -3,16 +3,23 @@
     <b-container fluid>
       <h1>Comunnity</h1>
       <br>
-      <router-link :to="{ name: 'articleNew' }">새글작성</router-link>
-      <br>     
+      <b-button variant="primary mb-3"> 
+        <b-icon icon="pencil-square"></b-icon>
+        <router-link :to="{ name: 'articleNew' }"
+        style="color:white; font-size: larger;">
+        글쓰기
+        </router-link>
+      </b-button>
+      <br>
       <b-table striped hover sticky-header="800px" 
       :items='articles' :fields="fields" 
       id="my-table"
       responsive
       :per-page="perPage"
-      :current-page="currentPage">
-          <template #cell(pk)="data">
-            {{ data.item.pk }}
+      :current-page="currentPage"
+      class="text-center">
+          <template #head(user)="data">
+            <h3 class="text-info">{{ data.fields.label }}</h3>
           </template>
 
           <template #cell(user)="data">
@@ -42,6 +49,7 @@
         :total-rows="rows"
         :per-page="perPage"
         aria-controls="my-table"
+        class="justify-content-center"
       ></b-pagination>
     </b-container>
     

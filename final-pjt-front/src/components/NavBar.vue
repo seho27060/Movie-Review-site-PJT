@@ -17,7 +17,7 @@
             <router-link 
               :to="{ name: 'articles', params: {} }"
               style="color:rgb(255, 255, 255, 0.5);">
-              Articles
+              Community
             </router-link>
           </b-nav-item>
           <b-nav-item-dropdown text="Movies">
@@ -42,8 +42,11 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-if = "adminCheck" :href="adminUrl" right> ADMIN </b-nav-item> 
           <b-nav-item right>
+            <b-nav-item :href="profileUrl">
+              aProfile
+            </b-nav-item>
             <router-link 
-              :to="{ name: 'profile', params: { username : this.username} }"
+              :to="{ name: 'profile', params: { username : username} }"
               style="color:rgb(255, 255, 255, 0.5);">
               Profile
             </router-link>
@@ -86,6 +89,7 @@
         return this.currentUser.username ? this.currentUser.username : 'guest'
       },
       profileUrl () {
+        console.log("http://localhost:8080/profile/" + this.username)
         return "http://localhost:8080/profile/" + this.username
       },
       adminUrl() {

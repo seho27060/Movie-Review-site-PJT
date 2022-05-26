@@ -232,17 +232,5 @@ export default {
             .catch(err => console.error(err.response))
         }
       },
-    checkLike(data){
-        const likes = data.like_users
-        const me = this.currentUser.pk
-        let check = false
-        for (const user of likes) {
-          if (user == me){
-            this.check = true
-            break
-          }
-        }
-        this.likeCheck = check
-      }
   },
 }

@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'articles',
     'accounts',
     'movies',
+
+    'django_seed',
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',

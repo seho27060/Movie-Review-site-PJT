@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit" class="comment-list-form">
     <label for="comment">comment: </label>
     <input type="text" id="comment" v-model="content" required style="border-radius:3px">
-    <b-button variant="primary" size="sm" class="m-2">Comment</b-button>
+    <b-button variant="primary" size="sm" class="m-2" @click="onSubmit">Comment</b-button>
   </form>
 </template>
 
@@ -22,6 +22,7 @@ export default {
   methods: {
     ...mapActions(['createComment']),
     onSubmit() {
+      console.log(this.content)
       this.createComment({ articlePk: this.article.pk, content: this.content, })
       this.content = ''
     }
