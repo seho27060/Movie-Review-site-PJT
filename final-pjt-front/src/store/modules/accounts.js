@@ -17,7 +17,7 @@ export default {
   // 모든 state는 getters 를 통해서 접근하겠다.
   getters: {
     isLoggedIn: state => !!state.token,
-    w: state => state.currentUser,
+    currentUser: state => state.currentUser,
     profile: state => state.profile,
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
