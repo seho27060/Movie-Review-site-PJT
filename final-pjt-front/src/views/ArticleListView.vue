@@ -22,13 +22,16 @@
             <h3 class="text-info">{{ data.fields.label }}</h3>
           </template>
 
-          <template #cell(user)="data">
-            {{ data.item.user.username }}
+          <template #cell(username)="data">
+            <router-link 
+              :to="{ name: 'profile', params: {username: data.item.user.username} }"
+              style="color:black">
+              {{ data.item.user.username }}
+            </router-link>
           </template>
 
           <template #cell(title)="data">
-            <!-- <a :href="articleUrl(item.index)"></a>/ -->
-              <router-link 
+            <router-link 
               :to="{ name: 'article', params: {articlePk: data.item.pk} }"
               style="color:black">
               {{ data.item.title }}
@@ -66,7 +69,7 @@
         perPage: 10,
         currentPage: 1,
         fields:[
-          { key: "user.username", label: "작성자"},
+          { key: "username", label: "작성자"},
           { key: "title", label: "제목"},
           { key: "comment_count", label: "댓글"},
           { key: "like_count", label: "좋아요"},

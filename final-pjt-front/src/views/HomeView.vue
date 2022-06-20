@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <div>
-      <b-img id="mainImg" :src="require(`@/assets/movie_home_main.jpg`)" fluid alt="Responsive image"></b-img>
+    <div align="center">
+      <b-img id="mainImg" :src="require(`@/assets/movie_home_main.jpg`)" fluid alt="Responsive image" style="width:600px"></b-img>
     </div>
     <br>
-    <b-card-group deck class="align-content-between">
+    <b-card-group deck class="justify-content-between">
       <router-link :to="{ name: 'articles', params: {} }" style="color:black" >
         <b-card title="Community" img-src=http://www.stpeters.es/blog/wp-content/uploads/2022/05/community.png 
         img-alt="Image" img-top img-height="200">

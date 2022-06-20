@@ -5,10 +5,28 @@
 [toc]
 
 <hr/>
+<br>
 
 ## 팀원
 - 팀장 : 이동주
 - 팀원 : 박세호
+
+---
+
+
+
+## 개요
+
+### 설명
+- TMDB 영화 데이터를 기반으로 영화 리뷰 사이트 구현
+
+### 사용 Framework
+- 백엔드 서버 Dango
+	- axios 를 통한 API 데이터 요청
+- 프론트 서버 Vue.js
+	- Vuex를 통한 비동기적 구현이 중점.
+
+---
 
 ## 일정 
 | 요일 | 예정                                          |          |      |
@@ -32,19 +50,15 @@
 | 목 : | CSS 마무리(Bootstrap)                         | O        |      |
 
 
-
+---
 
 
 
 ## 데이터베이스 및 URL
+
 ### 데이터베이스
 
 ![](./README.assets/ERD.jpg)
-
-
-
-
-
 
 
 
@@ -87,6 +101,8 @@
 | movieRecommendList | /movies/recommendation                | MovieRecommendaListView |
 | NotFound404        | /404 와 위의 path외 정의되지않는 path | NotFound404             |
 
+---
+
 
 
 ## 구조 설계
@@ -95,7 +111,7 @@
 - header 에 navbar 로 각 router 생성(Home,  User, Login, Logout) 
 - 로그인 상태에 따라 navbar 구성이 변경
 
-#### Home()
+### Home
 **초기화면**
 
 - 웹페이지 소개
@@ -104,35 +120,85 @@
 	- MovieRecommend 클릭시, 추천 영화 조회
 	- Article 클릭시, 게시글 조회
 
-#### Movie
-##### Movie (url: "/movies")
-- card component 로 나열(5\*10)
-	- 영화 card 선택시, 해당 영화의 상세 정보 조회
-	- 상세 정보 조회시, user 가 login 시에 해당 영화의 평점 기입 가능.
-##### MovieDetail (url: "/movies")
-- 해당 영화의 상세 페이지
-- 포스터 이미지, 제목, 내용, 평점, 좋아요 갯수
-- 평점 입력 form
-##### MovieRecommend(url: "/movies/recommendation")
-- 알고리즘에 의한 영화추천 페이지
-  - 알고리즘에 의해서 추천 영화 제시
-  - 알고리즘은 API 또는 기존 데이터를 이용하여 설계
-  	- 좋아요 기반/ 평점 기반 등등
+![image-20220620175547661](README.assets/image-20220620175547661.png)
 
-#### Article
-##### Article (url:"/articles")
+### Community 
+
+#### Comunnity (url: "/articles")
+
+![image-20220620202534353](README.assets/image-20220620202534353.png)
+
+- 게시글 작성 CRUD 
 - 전체 Article 조회
 	- Bootstrap vue 를 활용하여 List group으로 구성
-	- Article의 말머리, 제목, 작성자, 좋아요갯수 로 각 list item 구성
-	- Article list item 클릭시, 해당 Article 상세 페이지로 이동
+	- Article의 작성자, 제목, 댓글 수, 좋아요 수 로 각 list item 구성
+	- 제목 클릭시, 해당 Article 상세 페이지로 이동
 		- Article title, content, Comment 로 구성
-- Article create 버튼
+	- 작성자 클릭시, 해당 작성자의 User Profile 페이지로 이동
+- 글쓰기 버튼
 	- 클릭시 Article 작성 페이지(/articles/new/ )로 이동
+#### Article(url: "/article/{articlePk}")
+
+![image-20220620211730125](README.assets/image-20220620211730125.png)
+
+- 해당 Article의 제목, 작성자, content 출력
+- 좋아요 버튼, 좋아요 수 출력
+  - 좋아요 클릭시 좋아요 수 변경, 비동기적 작동
+- 댓글 Group List 로 출력
+  - 작성자, 댓글 내용, (해당 댓글의 작성자의 경우 edit, delete 추가 출력)
+  - 비동기적 작동.
+
+### Rating
+
+![image-20220620212946641](README.assets/image-20220620212946641-16557281882341.png)
+
+#### Movie (url: "/movies")
+
+- TMDB API통해 요청한 데이터를 fixture로 형성
+
+- 순위에 따른 출력
+
+- 영화 포스터, 제목, 평점 을 카드로 출력.
+
+- card component 로 나열(2\*6)
+	- 영화 card 선택시, 해당 영화의 상세 정보 조회
+	- 상세 정보 조회시, user 가 login 시에 해당 영화의 평점 기입 가능.
 	
-##### ArticleCreate (url:"/articles/new")
-- 새로운 글의 제목, 내용 작성
-##### ArticleEdit (url:"/articles/:articlePk/edit")
-- 기존에 작성한 글의 수정, 삭제
+	
+#### MovieDetail (url: "/movies/moviePk")
+
+![image-20220620214537910](README.assets/image-20220620214537910.png)
+
+- 해당 영화의 상세 페이지
+- 포스터 이미지, 제목, 개봉일, 장르, 줄거리, 평점 입력 form 출력
+
+
+
+#### MovieRecommend(url: "/recommendation")
+
+- 초기화면
+
+**![image-20220620214738361](README.assets/image-20220620214738361.png)**
+
+- 장르 선택시, 해당 장르를 포함하는 영화 리스트 출력
+
+![image-20220620214832271](README.assets/image-20220620214832271.png)
+
+
+
+
+
+### Profile(url: "/profile/username")
+
+![image-20220620215024555](README.assets/image-20220620215024555.png)
+
+- 해당 유저의 작성한 글, 좋아요한 글 출력.
+- 글 제목 클릭시 해당 Article 로 이동
+
+
+
+---
+
 
 
 **작업기록**
